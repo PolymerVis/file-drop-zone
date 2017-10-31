@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>file-drop-zone demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
+    <link rel="import" href="../../polymer/lib/elements/dom-repeat.html">
+    <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-icons/iron-icons.html">
+    <link rel="import" href="../../iron-icon/iron-icon.html">
+    <link rel="import" href="../file-drop-zone.html">
+
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles iron-flex iron-flex-alignment">
+      </style>
+    </custom-style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Basic file-drop-zone demo</h3>
+
+<demo-snippet>
+<template>
+<style>
+  file-drop-zone {
+    border: 1px dashed transparent;
+    color: #aaa;
+    background-color: #efefef;
+    width: 560px;
+    height: 300px;
+    transition: all .3s;
+  }
+  file-drop-zone.dragover {
+    border: 1px dashed #E91E63;
+    transition: all .3s;
+  }
+  file-drop-zone:hover > [slot='drop-zone'],
+  file-drop-zone.dragover > [slot='drop-zone'] {
+    color: #E91E63;
+    transition: all .3s;
+  }
+  file-drop-zone.errored {
+    background-color: #FFEBEE;
+    transition: all .3s;
+  }
+  file-drop-zone[has-files] {
+    color: #2196F3;
+    transition: all .3s;
+  }
+  [slot='drop-zone'] {
+    text-align: center;
+    font-size: 1.1em;
+    --iron-icon-height: 64px;
+    --iron-icon-width: 64px;
+  }
+  [slot='drop-zone'] > .title {
+    font-size: 1.2em;
+  }
+  [slot='drop-zone'] > .small{
+    font-size: 0.6em;
+  }
+</style>
+
+<dom-bind>
+  <template>
+
+    <file-drop-zone
+      multiple
+      accept=".csv, .tsv"
+      files="{{files}}"
+      last-error="{{error}}"
+      on-error="onError">
+
+      <!-- Custom slot element to style the interior of the drop zone -->
+      <div slot="drop-zone" class="layout vertical center center-justified">
+        <iron-icon icon="description"></iron-icon>
+        <div class="title">Drop CSV or TSV files here</div>
+        <!-- error message -->
+        <div class="small">[[error.message]]</div>
+        <!-- list of file selected -->
+        <template is="dom-repeat" items="[[files]]">
+          <div class="small">[[item.name]]</div>
+        </template>
+      </div>
+
+    </file-drop-zone>
+
+  </template>
+</dom-bind>
+
+<script>
+var demo = document.querySelector('dom-bind');
+demo.onError = function(e) {
+  alert(e.message);
+};
+</script>
+</template>
+</demo-snippet>
+
+</div>
+</body>
+</html>

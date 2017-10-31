@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>file-drop-zone test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../file-drop-zone.html">
+  </head>
+  <body>
+
+    <test-fixture id="BasicTestFixture">
+      <template>
+        <file-drop-zone></file-drop-zone>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="ChangedPropertyTestFixture">
+      <template>
+        <file-drop-zone accept=".jpg"></file-drop-zone>
+      </template>
+    </test-fixture>
+
+<script>
+suite('file-drop-zone', function() {
+  test('instantiating the element with default properties works', function() {
+    var element = fixture('BasicTestFixture');
+    assert.equal(element.is, 'file-drop-zone');
+  });
+
+  test('setting a property on the element works', function() {
+    // Create a test fixture
+    var element = fixture('ChangedPropertyTestFixture');
+    assert.equal(element.accept, '.jpg');
+  });
+});
+</script>
+
+  </body>
+</html>
