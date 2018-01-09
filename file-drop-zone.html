@@ -73,7 +73,7 @@ file-drop-zone[has-files] { border: 1px solid grey; }
       @apply(--layout-center-justified);
     }
     #files {
-      opacity: 0;
+      display: none;
     }
   </style>
 
@@ -275,6 +275,7 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
     this._setLastError(null);
     this._setFiles(this._toArray(e.target.files));
     this.dispatchEvent(new CustomEvent('selected', {detail: e.target.files}));
+    this.$.files.value = null;
   }
 
   _onFileDrop(e) {
@@ -293,6 +294,7 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
     if (ok) {
       this._setFiles(this._toArray(files));
       this.dispatchEvent(new CustomEvent('selected', {detail: files}));
+      this.$.files.value = null;
     }
   }
 
