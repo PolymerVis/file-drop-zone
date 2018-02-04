@@ -118,6 +118,15 @@ You can also customize the interior of the `file-drop-zone` via `slot` named `dr
 </file-drop-zone>
 ```
 
+### Events
+#### `selected`
+Fired when one or more files are selected or dropped into the zone.
+Return a [FileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList) of selected files.
+
+#### `error`
+Fired when an error is encountered.
+
+
 ## Styling
 You can style `file-drop-zone` normally, but there are 3 additional states available for styling.
 
