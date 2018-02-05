@@ -19,6 +19,7 @@ file-drop-zone
 </custom-element-demo>
 ```
 -->
+
 ```html
 <style>
 file-drop-zone {
@@ -86,14 +87,17 @@ file-drop-zone[has-files] {
 API documentations and examples can be found at [`file-drop-zone` webcomponents page](https://www.webcomponents.org/element/PolymerVis/file-drop-zone).
 
 ## Installation
+
 ```
 bower install --save PolymerVis/file-drop-zone
 ```
 
 ## Disclaimers
+
 PolymerVis is a personal project and is NOT in any way affliated with Polymer or Google.
 
 ## Quick Start
+
 `file-drop-zone` is a wrapper around an invisible `file` input. The most basic use case is to style the `file-drop-zone` directly, and set the appropriate attributes (`required`, `accept`, `multiple`, `name`) for the `file` input.
 
 ```css
@@ -103,6 +107,7 @@ file-drop-zone {
   background-color: #fafafa;
 }
 ```
+
 ```html
 <file-drop-zone multiple accept="image/*" files="{{files}}"></file-drop-zone>
 ```
@@ -118,35 +123,45 @@ You can also customize the interior of the `file-drop-zone` via `slot` named `dr
 </file-drop-zone>
 ```
 
-### Events
-#### `selected`
+## Events
+
+#### `change` or `selected`
+
 Fired when one or more files are selected or dropped into the zone.
 Return a [FileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList) of selected files.
+**Deprecation warning: `selected` event will be deprecated and removed at `2.1.0`. Use `change` event instead.**
 
 #### `error`
+
 Fired when an error is encountered.
 
-
 ## Styling
+
 You can style `file-drop-zone` normally, but there are 3 additional states available for styling.
 
 **.dragover**  
 You can style `file-drop-zone` when a file is dragged over the drop-zone with the `dragover` class.
 
 ```css
-file-drop-zone.dragover { border: 1px dashed grey; }
+file-drop-zone.dragover {
+  border: 1px dashed grey;
+}
 ```
 
 **.errored**  
 You can style `file-drop-zone` when there is any error with the `errored` class.
 
 ```css
-file-drop-zone.errored { border: 1px dashed red; }
+file-drop-zone.errored {
+  border: 1px dashed red;
+}
 ```
 
 **[has-files]**  
 You can style `file-drop-zone` when there are at least 1 selected file with the `has-files` attribute.
 
 ```css
-file-drop-zone[has-files] { border: 1px solid grey; }
+file-drop-zone[has-files] {
+  border: 1px solid grey;
+}
 ```
