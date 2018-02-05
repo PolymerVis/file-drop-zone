@@ -30,9 +30,10 @@ You can also customize the interior of the `file-drop-zone` via `slot` named `dr
 ```
 
 ### Events
-#### `selected`
+#### `change` or `selected`
 Fired when one or more files are selected or dropped into the zone.
 Return a [FileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList) of selected files.
+**Deprecation warning: `selected` event will be deprecated and removed at `2.1.0`. Use `change` event instead.**
 
 #### `error`
 Fired when an error is encountered.
@@ -111,11 +112,11 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
    * @param {FileList} fileList [FileList](https://developer.mozilla.org/en-US/docs/Web/API/FileList) of selected files.
    */
   /**
-    * Fired when error is encountered.
-    *
-    * @event error
-    * @param {ErrorEvent} error ErrorEvent
-    */
+   * Fired when error is encountered.
+   *
+   * @event error
+   * @param {ErrorEvent} error ErrorEvent
+   */
   static get properties() {
     return {
       /**
@@ -207,6 +208,15 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
         notify: true,
         readOnly: true,
         observer: '_lastErrorChanged'
+      },
+      /**
+       * Event handler for change event for `input`.
+       * @type {Function}
+       */
+      onchange: {
+        type: Function,
+        value: null,
+        observer: '_onchangeChanged'
       }
     };
   }
@@ -217,6 +227,10 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
     this.addEventListener('dragleave', e => this._onDragEvent(e));
     this.addEventListener('drop', e => this._onFileDrop(e));
     Polymer.Gestures.addListener(this, 'tap', e => this.$.files.click());
+  }
+
+  _onchangeChanged(cb) {
+    if (cb) this.$.files.onchange = cb;
   }
 
   _lastErrorChanged(error) {
@@ -250,8 +264,9 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
       if (acceptList.indexOf(fileList[i].type) >= 0) continue;
 
       // did not match anything in accept
-      let message = `${fileList[i]
-        .name} has invalid file format not found in accept attribute!`;
+      let message = `${
+        fileList[i].name
+      } has invalid file format not found in accept attribute!`;
       this._setLastError(new ErrorEvent('error', {message}));
       return false;
     }
@@ -284,6 +299,7 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
     this._setLastError(null);
     this._setFiles(this._toArray(e.target.files));
     this.dispatchEvent(new CustomEvent('selected', {detail: e.target.files}));
+    this.dispatchEvent(new CustomEvent('change', {detail: e.target.files}));
     this.$.files.value = null;
   }
 
@@ -295,7 +311,9 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
     var files = e.dataTransfer.files;
 
     if (!this.multiple && files.length > 1) {
-      let message = `${files.length} files selected when multiple attribute is not present!`;
+      let message = `${
+        files.length
+      } files selected when multiple attribute is not present!`;
       this._setLastError(new ErrorEvent('error', {message}));
       return;
     }
@@ -303,6 +321,7 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
     if (ok) {
       this._setFiles(this._toArray(files));
       this.dispatchEvent(new CustomEvent('selected', {detail: files}));
+      this.dispatchEvent(new CustomEvent('change', {detail: files}));
       this.$.files.value = null;
     }
   }
