@@ -1,4 +1,4 @@
-import { Element } from '../@polymer/polymer/polymer-element.js';
+import { PolymerElement, html } from '../@polymer/polymer/polymer-element.js';
 import { GestureEventListeners } from '../@polymer/polymer/lib/mixins/gesture-event-listeners.js';
 import '../@polymer/iron-flex-layout/iron-flex-layout.js';
 import '../@polymer/iron-flex-layout/iron-flex-layout-classes.js';
@@ -72,7 +72,7 @@ file-drop-zone[has-files] { border: 1px solid grey; }
 */
 class FileDropZone extends GestureEventListeners(Element) {
   static get template() {
-    return `
+    return html`
   <style include="iron-flex iron-flex-alignment">
     :host {
       display: block;
