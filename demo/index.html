@@ -6,24 +6,41 @@
 
     <title>file-drop-zone demo</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
 
-    <link rel="import" href="../../polymer/lib/elements/dom-bind.html">
-    <link rel="import" href="../../polymer/lib/elements/dom-repeat.html">
-    <link rel="import" href="../../iron-flex-layout/iron-flex-layout-classes.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../../iron-icons/iron-icons.html">
-    <link rel="import" href="../../iron-icon/iron-icon.html">
-    <link rel="import" href="../file-drop-zone.html">
+    <script type="module" src="../../@polymer/polymer/lib/elements/dom-bind.js"></script>
+    <script type="module" src="../../@polymer/polymer/lib/elements/dom-repeat.js"></script>
+    <script type="module" src="../../@polymer/iron-flex-layout/iron-flex-layout-classes.js"></script>
+    <script type="module" src="../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+    <script type="module" src="../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
+    <script type="module" src="../../@polymer/iron-icons/iron-icons.js"></script>
+    <script type="module" src="../../@polymer/iron-icon/iron-icon.js"></script>
+    <script type="module" src="../file-drop-zone.js"></script>
 
-    <custom-style>
+    <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('div');
+
+$_documentContainer.innerHTML = `<custom-style>
       <style is="custom-style" include="demo-pages-shared-styles iron-flex iron-flex-alignment">
       </style>
-    </custom-style>
+    </custom-style>`;
+
+document.body.appendChild($_documentContainer);
+</script>
   </head>
   <body>
-    <div class="vertical-section-container centered">
+    <script type="module">
+const $_documentContainer = document.createElement('div');
+
+$_documentContainer.innerHTML = `<div class="vertical-section-container centered">
       <h3>Basic file-drop-zone demo</h3>
 
 <demo-snippet>
@@ -71,12 +88,7 @@
 <dom-bind>
   <template>
 
-    <file-drop-zone
-      multiple
-      accept=".csv, .tsv"
-      files="{{files}}"
-      last-error="{{error}}"
-      on-error="onError">
+    <file-drop-zone multiple="" accept=".csv, .tsv" files="{{files}}" last-error="{{error}}" on-error="onError">
 
       <!-- Custom slot element to style the interior of the drop zone -->
       <div slot="drop-zone" class="layout vertical center center-justified">
@@ -96,6 +108,23 @@
 </dom-bind>
 
 <script>
+var demo = document.querySelector('dom-bind');
+demo.onError = function(e) {
+  alert(e.message);
+};
+&lt;/script>
+</template>
+</demo-snippet>
+
+</div>`;
+
+document.body.appendChild($_documentContainer);
+</script>./@polymer/iron-flex-layout/iron-flex-layout-classes.js';
+import '../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+import '../../@polymer/iron-demo-helpers/demo-snippet.js';
+import '../../@polymer/iron-icons/iron-icons.js';
+import '../../@polymer/iron-icon/iron-icon.js';
+import '../file-drop-zone.js';
 var demo = document.querySelector('dom-bind');
 demo.onError = function(e) {
   alert(e.message);

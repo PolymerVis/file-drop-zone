@@ -82,14 +82,14 @@ file-drop-zone[has-files] {
 </file-drop-zone>
 ```
 
-`file-drop-zone` is a Polymer 2.0 element for dragging and dropping files into a customizable dropzone.
+`file-drop-zone` is a [Polymer 3.0.0-pre.12](https://www.polymer-project.org/blog/2018-03-23-polymer-3-latest-preview) element for dragging and dropping files into a customizable dropzone. The Polymer 2.0 version can be found in the [master branch](https://github.com/PolymerVis/file-drop-zone).
 
 API documentations and examples can be found at [`file-drop-zone` webcomponents page](https://www.webcomponents.org/element/PolymerVis/file-drop-zone).
 
 ## Installation
 
 ```
-bower install --save PolymerVis/file-drop-zone
+npm install --save @polymer-vis/file-drop-zone
 ```
 
 ## Disclaimers

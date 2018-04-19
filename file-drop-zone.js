@@ -1,9 +1,9 @@
-<link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="../polymer/lib/mixins/gesture-event-listeners.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
-
-<!--
+import { Element } from '../@polymer/polymer/polymer-element.js';
+import { GestureEventListeners } from '../@polymer/polymer/lib/mixins/gesture-event-listeners.js';
+import '../@polymer/iron-flex-layout/iron-flex-layout.js';
+import '../@polymer/iron-flex-layout/iron-flex-layout-classes.js';
+import { addListener } from '../@polymer/polymer/lib/utils/gestures.js';
+/**
 ### Quick Start
 `file-drop-zone` is a wrapper around an invisible `file` input. The most basic use case is to style the `file-drop-zone` directly, and set the appropriate attributes (`required`, `accept`, `multiple`, `name`) for the `file` input.
 
@@ -69,10 +69,10 @@ file-drop-zone[has-files] { border: 1px solid grey; }
 * @customElement
 * @polymer
 * @demo demo/index.html
--->
-<dom-module id="file-drop-zone">
-
-<template>
+*/
+class FileDropZone extends GestureEventListeners(Element) {
+  static get template() {
+    return `
   <style include="iron-flex iron-flex-alignment">
     :host {
       display: block;
@@ -87,21 +87,12 @@ file-drop-zone[has-files] { border: 1px solid grey; }
     }
   </style>
 
-  <input
-    id="files"
-    type="file"
-    name$="[[name]]"
-    multiple$="[[multiple]]"
-    accept$="[[accept]]"
-    required$="[[required]]"
-    on-change="_onFilePick" />
+  <input id="files" type="file" name\$="[[name]]" multiple\$="[[multiple]]" accept\$="[[accept]]" required\$="[[required]]" on-change="_onFilePick">
 
   <slot name="drop-zone"></slot>
+`;
+  }
 
-</template>
-
-<script>
-class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
   static get is() {
     return 'file-drop-zone';
   }
@@ -226,7 +217,7 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
     this.addEventListener('dragover', e => this._onDragEvent(e));
     this.addEventListener('dragleave', e => this._onDragEvent(e));
     this.addEventListener('drop', e => this._onFileDrop(e));
-    Polymer.Gestures.addListener(this, 'tap', e => this.$.files.click());
+    addListener(this, 'tap', e => this.$.files.click());
   }
 
   _onchangeChanged(cb) {
@@ -336,5 +327,3 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
 }
 
 window.customElements.define(FileDropZone.is, FileDropZone);
-</script>
-</dom-module>
