@@ -1,7 +1,7 @@
 {
   "name": "@polymer-vis/file-drop-zone",
   "flat": true,
-  "version": "3.0.0-pre.12",
+  "version": "3.0.0-pre.12a",
   "description": "Polymer 2.0 element for dragging and dropping files into a customizable dropzone.",
   "author": "eterna2 <eterna2@hotmail.com>",
   "keywords": [
