@@ -1,8 +1,9 @@
-import { PolymerElement, html } from '../@polymer/polymer/polymer-element.js';
-import { GestureEventListeners } from '../@polymer/polymer/lib/mixins/gesture-event-listeners.js';
-import '../@polymer/iron-flex-layout/iron-flex-layout.js';
-import '../@polymer/iron-flex-layout/iron-flex-layout-classes.js';
-import { addListener } from '../@polymer/polymer/lib/utils/gestures.js';
+import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {GestureEventListeners} from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
+import {addListener} from '@polymer/polymer/lib/utils/gestures.js';
+
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@polymer/iron-flex-layout/iron-flex-layout-classes.js';
 /**
 ### Quick Start
 `file-drop-zone` is a wrapper around an invisible `file` input. The most basic use case is to style the `file-drop-zone` directly, and set the appropriate attributes (`required`, `accept`, `multiple`, `name`) for the `file` input.
@@ -70,7 +71,7 @@ file-drop-zone[has-files] { border: 1px solid grey; }
 * @polymer
 * @demo demo/index.html
 */
-class FileDropZone extends GestureEventListeners(Element) {
+class FileDropZone extends GestureEventListeners(PolymerElement) {
   static get template() {
     return html`
   <style include="iron-flex iron-flex-alignment">

@@ -2,7 +2,7 @@
   "name": "@polymer-vis/file-drop-zone",
   "flat": true,
   "version": "3.0.0-pre.12",
-  "description": "Polymer 3.0 element for dragging and dropping files into a customizable dropzone.",
+  "description": "Polymer 2.0 element for dragging and dropping files into a customizable dropzone.",
   "author": "eterna2 <eterna2@hotmail.com>",
   "keywords": [
     "polymer",
@@ -14,11 +14,18 @@
     "dropzone",
     "filereader"
   ],
-  "main": "file-drop-zone.js",
+  "main": "file-drop-zone.html",
   "license": "MIT",
   "dependencies": {
-    "@polymer/polymer": "^3.0.0-pre.12",
-    "@polymer/iron-flex-layout": "^3.0.0-pre.12"
+    "@polymer/polymer": "^3.0.0-pre.1",
+    "@polymer/iron-flex-layout": "^3.0.0-pre.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-google": "^0.9.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-html": "^4.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.12.1"
+  }
 }
