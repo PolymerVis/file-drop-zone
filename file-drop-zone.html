@@ -226,7 +226,9 @@ class FileDropZone extends Polymer.GestureEventListeners(Polymer.Element) {
     this.addEventListener('dragover', e => this._onDragEvent(e));
     this.addEventListener('dragleave', e => this._onDragEvent(e));
     this.addEventListener('drop', e => this._onFileDrop(e));
-    Polymer.Gestures.addListener(this, 'tap', e => this.$.files.click());
+    Polymer.Gestures.addListener(this, 'tap', e => {
+      this.$.files.dispatchEvent(new MouseEvent("click", { bubbles: false }));
+    });
   }
 
   _onchangeChanged(cb) {
