@@ -65,16 +65,12 @@ file-drop-zone[has-files] { border: 1px solid grey; }
 * @polymer
 * @demo demo/index.html
 */
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
-*/
+
 import {PolymerElement} from '@polymer/polymer/polymer-element.js';
 
 import {GestureEventListeners} from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
-import '@polymer/iron-flex-layout/iron-flex-layout.js';
-import '@polymer/iron-flex-layout/iron-flex-layout-classes.js';
+import './node_modules/@polymer/iron-flex-layout/iron-flex-layout.js';
+import './node_modules/@polymer/iron-flex-layout/iron-flex-layout-classes.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 import {addListener} from '@polymer/polymer/lib/utils/gestures.js';
 class FileDropZone extends GestureEventListeners(PolymerElement) {

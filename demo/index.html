@@ -1,138 +1,135 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>file-drop-zone demo</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <title>file-drop-zone demo</title>
 
-    <script type="module" src="../../@polymer/polymer/lib/elements/dom-bind.js"></script>
-    <script type="module" src="../../@polymer/polymer/lib/elements/dom-repeat.js"></script>
-    <script type="module" src="../../@polymer/iron-flex-layout/iron-flex-layout-classes.js"></script>
-    <script type="module" src="../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-    <script type="module" src="../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
-    <script type="module" src="../../@polymer/iron-icons/iron-icons.js"></script>
-    <script type="module" src="../../@polymer/iron-icon/iron-icon.js"></script>
-    <script type="module" src="../file-drop-zone.js"></script>
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 
-    <!-- FIXME(polymer-modulizer):
-        These imperative modules that innerHTML your HTML are
-        a hacky way to be sure that any mixins in included style
-        modules are ready before any elements that reference them are
-        instantiated, otherwise the CSS @apply mixin polyfill won't be
-        able to expand the underlying CSS custom properties.
-        See: https://github.com/Polymer/polymer-modulizer/issues/154
-        -->
-    <script type="module">
-const $_documentContainer = document.createElement('template');
+  <script type="module" src="../node_modules/@polymer/polymer/lib/elements/dom-bind.js"></script>
+  <script type="module" src="../node_modules/@polymer/polymer/lib/elements/dom-repeat.js"></script>
+  <script type="module" src="../node_modules/@polymer/iron-flex-layout/iron-flex-layout-classes.js"></script>
+  <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+  <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
+  <script type="module" src="../node_modules/@polymer/iron-icons/iron-icons.js"></script>
+  <script type="module" src="../node_modules/@polymer/iron-icon/iron-icon.js"></script>
+  <script type="module" src="../file-drop-zone.js"></script>
 
-$_documentContainer.innerHTML = `<custom-style>
+  <script type="module">
+
+    const $_documentContainer = document.createElement('template');
+    $_documentContainer.innerHTML = `<custom-style>
       <style is="custom-style" include="demo-pages-shared-styles iron-flex iron-flex-alignment">
       </style>
     </custom-style>`;
 
-document.body.appendChild($_documentContainer.content);
-</script>
-  </head>
-  <body>
-    <script type="module">
-const $_documentContainer = document.createElement('template');
+    document.body.appendChild($_documentContainer.content);
+  </script>
+</head>
 
-$_documentContainer.innerHTML = `<div class="vertical-section-container centered">
+<body>
+  <script type="module">
+    import '../node_modules/@polymer/iron-flex-layout/iron-flex-layout-classes.js';
+    import '../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
+    import '../node_modules/@polymer/iron-demo-helpers/demo-snippet.js';
+    import '../node_modules/@polymer/iron-icons/iron-icons.js';
+    import '../node_modules/@polymer/iron-icon/iron-icon.js';
+    import '../file-drop-zone.js';
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
       <h3>Basic file-drop-zone demo</h3>
 
-<demo-snippet>
-<template>
-<style>
-  file-drop-zone {
-    border: 1px dashed transparent;
-    color: #aaa;
-    background-color: #efefef;
-    width: 560px;
-    height: 300px;
-    transition: all .3s;
-  }
-  file-drop-zone.dragover {
-    border: 1px dashed #E91E63;
-    transition: all .3s;
-  }
-  file-drop-zone:hover > [slot='drop-zone'],
-  file-drop-zone.dragover > [slot='drop-zone'] {
-    color: #E91E63;
-    transition: all .3s;
-  }
-  file-drop-zone.errored {
-    background-color: #FFEBEE;
-    transition: all .3s;
-  }
-  file-drop-zone[has-files] {
-    color: #2196F3;
-    transition: all .3s;
-  }
-  [slot='drop-zone'] {
-    text-align: center;
-    font-size: 1.1em;
-    --iron-icon-height: 64px;
-    --iron-icon-width: 64px;
-  }
-  [slot='drop-zone'] > .title {
-    font-size: 1.2em;
-  }
-  [slot='drop-zone'] > .small{
-    font-size: 0.6em;
-  }
-</style>
+      <demo-snippet>
+      <template>
+      <style>
+        file-drop-zone {
+          border: 1px dashed transparent;
+          color: #aaa;
+          background-color: #efefef;
+          width: 560px;
+          height: 300px;
+          transition: all .3s;
+        }
+        file-drop-zone.dragover {
+          border: 1px dashed #E91E63;
+          transition: all .3s;
+        }
+        file-drop-zone:hover > [slot='drop-zone'],
+        file-drop-zone.dragover > [slot='drop-zone'] {
+          color: #E91E63;
+          transition: all .3s;
+        }
+        file-drop-zone.errored {
+          background-color: #FFEBEE;
+          transition: all .3s;
+        }
+        file-drop-zone[has-files] {
+          color: #2196F3;
+          transition: all .3s;
+        }
+        [slot='drop-zone'] {
+          text-align: center;
+          font-size: 1.1em;
+          --iron-icon-height: 64px;
+          --iron-icon-width: 64px;
+        }
+        [slot='drop-zone'] > .title {
+          font-size: 1.2em;
+        }
+        [slot='drop-zone'] > .small{
+          font-size: 0.6em;
+        }
+      </style>
 
-<dom-bind>
-  <template>
+      <dom-bind>
+        <template>
 
-    <file-drop-zone multiple="" accept=".csv, .tsv" files="{{files}}" last-error="{{error}}" on-error="onError">
+          <file-drop-zone multiple="" accept=".csv, .tsv" files="{{files}}" last-error="{{error}}" on-error="onError">
 
-      <!-- Custom slot element to style the interior of the drop zone -->
-      <div slot="drop-zone" class="layout vertical center center-justified">
-        <iron-icon icon="description"></iron-icon>
-        <div class="title">Drop CSV or TSV files here</div>
-        <!-- error message -->
-        <div class="small">[[error.message]]</div>
-        <!-- list of file selected -->
-        <template is="dom-repeat" items="[[files]]">
-          <div class="small">[[item.name]]</div>
+            <!-- Custom slot element to style the interior of the drop zone -->
+            <div slot="drop-zone" class="layout vertical center center-justified">
+              <iron-icon icon="description"></iron-icon>
+              <div class="title">Drop CSV or TSV files here</div>
+              <!-- error message -->
+              <div class="small">[[error.message]]</div>
+              <!-- list of file selected -->
+              <template is="dom-repeat" items="[[files]]">
+                <div class="small">[[item.name]]</div>
+              </template>
+            </div>
+
+          </file-drop-zone>
+
         </template>
-      </div>
+      </dom-bind>
 
-    </file-drop-zone>
+      <script>
+      var demo = document.querySelector('dom-bind');
+      demo.onError = function(e) {
+        alert(e.message);
+      };
+      &lt;/script>
+      </template>
+      </demo-snippet>
+    </div>`;
 
+    document.body.appendChild($_documentContainer.content);
+
+    setTimeout(() => {
+      var demo = document.querySelector('dom-bind');
+      demo.onError = function (e) {
+        alert(e.message);
+      };
+    }, 500);
+  </script>
   </template>
-</dom-bind>
+  </demo-snippet>
 
-<script>
-var demo = document.querySelector('dom-bind');
-demo.onError = function(e) {
-  alert(e.message);
-};
-&lt;/script>
-</template>
-</demo-snippet>
-
-</div>`;
-
-document.body.appendChild($_documentContainer.content);
-import '@polymer/iron-flex-layout/iron-flex-layout-classes.js';
-import '@polymer/iron-demo-helpers/demo-pages-shared-styles.js';
-import '@polymer/iron-demo-helpers/demo-snippet.js';
-import '@polymer/iron-icons/iron-icons.js';
-import '@polymer/iron-icon/iron-icon.js';
-import '../file-drop-zone.js';
-var demo = document.querySelector('dom-bind');
-demo.onError = function(e) {
-  alert(e.message);
-};
-</script>
-</template>
-</demo-snippet>
-
-</div>
+  </div>
 </body>
+
 </html>
