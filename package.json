@@ -16,7 +16,7 @@
   "scripts": {
     "serve": "npx polymer serve",
     "lint": "npx eslint *.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx polymer test --npm",
     "precommit": "lint-staged"
   },
   "lint-staged": {
@@ -44,7 +44,8 @@
     "wct-browser-legacy": "^1.0.1",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "@polymer/iron-icon": "^3.0.0",
-    "@polymer/iron-icons": "^3.0.0"
+    "@polymer/iron-icons": "^3.0.0",
+    "web-component-tester": "^6.9.2"
   },
   "resolutions": {
     "inherits": "2.0.3",
