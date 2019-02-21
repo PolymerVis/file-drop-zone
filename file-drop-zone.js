@@ -69,8 +69,8 @@ file-drop-zone[has-files] { border: 1px solid grey; }
 import {PolymerElement} from '@polymer/polymer/polymer-element.js';
 
 import {GestureEventListeners} from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
-import './node_modules/@polymer/iron-flex-layout/iron-flex-layout.js';
-import './node_modules/@polymer/iron-flex-layout/iron-flex-layout-classes.js';
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+import '@polymer/iron-flex-layout/iron-flex-layout-classes.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 import {addListener} from '@polymer/polymer/lib/utils/gestures.js';
 class FileDropZone extends GestureEventListeners(PolymerElement) {
